@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>49049496333-0m3flnmvm8cani3ompa7dbe2kdblt8u3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.49049496333-0m3flnmvm8cani3ompa7dbe2kdblt8u3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC7M6clFr_RlQb_bakNL1XOLA3ca6SchvY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>49049496333</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>aglegaspi.iOS-Firebase-Project</string>
+	<key>PROJECT_ID</key>
+	<string>post-tracker-78153</string>
+	<key>STORAGE_BUCKET</key>
+	<string>post-tracker-78153.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:49049496333:ios:fdb6ede6c173f0f6be9e44</string>
+	<key>DATABASE_URL</key>
+	<string>https://post-tracker-78153.firebaseio.com</string>
+</dict>
+</plist>
