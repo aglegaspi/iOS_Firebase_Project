@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginVC.swift
 //  iOS_Firebase_Project
 //
 //  Created by Alex 6.1 on 11/25/19.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        view.backgroundColor = UIColor(red: 1.0, green: 0.737, blue: 0.6381, alpha: 1.0)
     }
 
 
 }
-
