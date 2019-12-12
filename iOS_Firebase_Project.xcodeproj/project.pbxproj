@@ -10,8 +10,12 @@
 		4DC8E55E47DB6B4AE1637F88 /* Pods_iOS_Firebase_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671BC1D6E0503995BCC4AD75 /* Pods_iOS_Firebase_Project.framework */; };
 		6440AECAFB888F7C6C92AC92 /* Pods_iOS_Firebase_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BAA164A383A331729314292 /* Pods_iOS_Firebase_ProjectTests.framework */; };
 		EC320E0223A1A4EB00AA10B6 /* Extension - Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0123A1A4EB00AA10B6 /* Extension - Validations.swift */; };
-		EC320E0423A1A55200AA10B6 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0323A1A55200AA10B6 /* HomeVC.swift */; };
 		EC320E0623A1A5D900AA10B6 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0523A1A5D900AA10B6 /* SignupVC.swift */; };
+		EC320E0923A1AC5B00AA10B6 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0823A1AC5B00AA10B6 /* FeedCell.swift */; };
+		EC320E0B23A26EFD00AA10B6 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0A23A26EFD00AA10B6 /* MainTBC.swift */; };
+		EC320E0D23A26F4B00AA10B6 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0C23A26F4B00AA10B6 /* FeedVC.swift */; };
+		EC320E0F23A26F6000AA10B6 /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0E23A26F6000AA10B6 /* UploadVC.swift */; };
+		EC320E1123A26FBD00AA10B6 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E1023A26FBD00AA10B6 /* ProfileVC.swift */; };
 		ECBA8CBD238C36B90045782C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA8CBC238C36B90045782C /* AppDelegate.swift */; };
 		ECBA8CBF238C36B90045782C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA8CBE238C36B90045782C /* SceneDelegate.swift */; };
 		ECBA8CC6238C36C10045782C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECBA8CC5238C36C10045782C /* Assets.xcassets */; };
@@ -42,8 +46,12 @@
 		CAFE9BCD6CC9B59F2792D9D4 /* Pods-iOS_Firebase_Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_Firebase_Project.release.xcconfig"; path = "Target Support Files/Pods-iOS_Firebase_Project/Pods-iOS_Firebase_Project.release.xcconfig"; sourceTree = "<group>"; };
 		D6707DE7BCB218E67940989A /* Pods-iOS_Firebase_Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_Firebase_Project.debug.xcconfig"; path = "Target Support Files/Pods-iOS_Firebase_Project/Pods-iOS_Firebase_Project.debug.xcconfig"; sourceTree = "<group>"; };
 		EC320E0123A1A4EB00AA10B6 /* Extension - Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension - Validations.swift"; sourceTree = "<group>"; };
-		EC320E0323A1A55200AA10B6 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		EC320E0523A1A5D900AA10B6 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		EC320E0823A1AC5B00AA10B6 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		EC320E0A23A26EFD00AA10B6 /* MainTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
+		EC320E0C23A26F4B00AA10B6 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		EC320E0E23A26F6000AA10B6 /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
+		EC320E1023A26FBD00AA10B6 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		ECBA8CB9238C36B90045782C /* iOS_Firebase_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Firebase_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBA8CBC238C36B90045782C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECBA8CBE238C36B90045782C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +115,11 @@
 			children = (
 				ECBA8CDE238C62650045782C /* LoginVC.swift */,
 				EC320E0523A1A5D900AA10B6 /* SignupVC.swift */,
-				EC320E0323A1A55200AA10B6 /* HomeVC.swift */,
+				EC320E0A23A26EFD00AA10B6 /* MainTBC.swift */,
+				EC320E1023A26FBD00AA10B6 /* ProfileVC.swift */,
+				EC320E0E23A26F6000AA10B6 /* UploadVC.swift */,
+				EC320E0C23A26F4B00AA10B6 /* FeedVC.swift */,
+				EC320E0823A1AC5B00AA10B6 /* FeedCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -336,16 +348,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC320E1123A26FBD00AA10B6 /* ProfileVC.swift in Sources */,
 				EC320E0223A1A4EB00AA10B6 /* Extension - Validations.swift in Sources */,
 				ECBA8CE3238C6D700045782C /* FirebaseAuthService.swift in Sources */,
+				EC320E0B23A26EFD00AA10B6 /* MainTBC.swift in Sources */,
 				ECBA8CEA238C87050045782C /* FirebaseStorageService.swift in Sources */,
-				EC320E0423A1A55200AA10B6 /* HomeVC.swift in Sources */,
+				EC320E0923A1AC5B00AA10B6 /* FeedCell.swift in Sources */,
+				EC320E0D23A26F4B00AA10B6 /* FeedVC.swift in Sources */,
 				ECBA8CE6238C6D9D0045782C /* FirestoreService.swift in Sources */,
 				ECBA8CBD238C36B90045782C /* AppDelegate.swift in Sources */,
 				EC320E0623A1A5D900AA10B6 /* SignupVC.swift in Sources */,
 				ECBA8CBF238C36B90045782C /* SceneDelegate.swift in Sources */,
 				ECBA8CE8238C6DD90045782C /* AppUser.swift in Sources */,
 				ECBA8CDF238C62650045782C /* LoginVC.swift in Sources */,
+				EC320E0F23A26F6000AA10B6 /* UploadVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

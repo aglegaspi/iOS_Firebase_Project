@@ -193,10 +193,10 @@ class LoginVC: UIViewController {
             //MARK: TODO - refactor this logic into scene delegate
             UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
                 if FirebaseAuthService.manager.currentUser?.photoURL != nil {
-                    window.rootViewController = HomeVC()
+                    window.rootViewController = ProfileVC()
                 } else {
                     window.rootViewController = {
-                        let mainVC = HomeVC()
+                        let mainVC = FeedVC()
                         //profileSetupVC.settingFromLogin = true
                         return mainVC
                     }()
