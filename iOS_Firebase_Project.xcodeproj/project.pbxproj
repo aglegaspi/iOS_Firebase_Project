@@ -16,6 +16,8 @@
 		EC320E0D23A26F4B00AA10B6 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0C23A26F4B00AA10B6 /* FeedVC.swift */; };
 		EC320E0F23A26F6000AA10B6 /* UploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E0E23A26F6000AA10B6 /* UploadVC.swift */; };
 		EC320E1123A26FBD00AA10B6 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E1023A26FBD00AA10B6 /* ProfileVC.swift */; };
+		EC320E1323A2D81700AA10B6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E1223A2D81700AA10B6 /* Post.swift */; };
+		EC320E1723A2DB2800AA10B6 /* PhotoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E1623A2DB2800AA10B6 /* PhotoDetailVC.swift */; };
 		ECBA8CBD238C36B90045782C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA8CBC238C36B90045782C /* AppDelegate.swift */; };
 		ECBA8CBF238C36B90045782C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA8CBE238C36B90045782C /* SceneDelegate.swift */; };
 		ECBA8CC6238C36C10045782C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECBA8CC5238C36C10045782C /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 		EC320E0C23A26F4B00AA10B6 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		EC320E0E23A26F6000AA10B6 /* UploadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVC.swift; sourceTree = "<group>"; };
 		EC320E1023A26FBD00AA10B6 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		EC320E1223A2D81700AA10B6 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EC320E1623A2DB2800AA10B6 /* PhotoDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailVC.swift; sourceTree = "<group>"; };
 		ECBA8CB9238C36B90045782C /* iOS_Firebase_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Firebase_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBA8CBC238C36B90045782C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECBA8CBE238C36B90045782C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,15 +117,32 @@
 		EC320E0723A1A5F100AA10B6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EC320E1823A2EC9700AA10B6 /* Auth */,
+				EC320E1923A2ECA800AA10B6 /* User */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EC320E1823A2EC9700AA10B6 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
 				ECBA8CDE238C62650045782C /* LoginVC.swift */,
 				EC320E0523A1A5D900AA10B6 /* SignupVC.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		EC320E1923A2ECA800AA10B6 /* User */ = {
+			isa = PBXGroup;
+			children = (
 				EC320E0A23A26EFD00AA10B6 /* MainTBC.swift */,
 				EC320E1023A26FBD00AA10B6 /* ProfileVC.swift */,
 				EC320E0E23A26F6000AA10B6 /* UploadVC.swift */,
 				EC320E0C23A26F4B00AA10B6 /* FeedVC.swift */,
 				EC320E0823A1AC5B00AA10B6 /* FeedCell.swift */,
+				EC320E1623A2DB2800AA10B6 /* PhotoDetailVC.swift */,
 			);
-			path = Controllers;
+			path = User;
 			sourceTree = "<group>";
 		};
 		ECBA8CB0238C36B90045782C = {
@@ -153,6 +174,7 @@
 				ECBA8CE4238C6D770045782C /* Firebase */,
 				ECBA8CBE238C36B90045782C /* SceneDelegate.swift */,
 				ECBA8CE7238C6DD90045782C /* AppUser.swift */,
+				EC320E1223A2D81700AA10B6 /* Post.swift */,
 				ECBA8CC5238C36C10045782C /* Assets.xcassets */,
 				ECBA8CE0238C6AAF0045782C /* GoogleService-Info.plist */,
 				ECBA8CC7238C36C10045782C /* LaunchScreen.storyboard */,
@@ -352,11 +374,13 @@
 				EC320E0223A1A4EB00AA10B6 /* Extension - Validations.swift in Sources */,
 				ECBA8CE3238C6D700045782C /* FirebaseAuthService.swift in Sources */,
 				EC320E0B23A26EFD00AA10B6 /* MainTBC.swift in Sources */,
+				EC320E1723A2DB2800AA10B6 /* PhotoDetailVC.swift in Sources */,
 				ECBA8CEA238C87050045782C /* FirebaseStorageService.swift in Sources */,
 				EC320E0923A1AC5B00AA10B6 /* FeedCell.swift in Sources */,
 				EC320E0D23A26F4B00AA10B6 /* FeedVC.swift in Sources */,
 				ECBA8CE6238C6D9D0045782C /* FirestoreService.swift in Sources */,
 				ECBA8CBD238C36B90045782C /* AppDelegate.swift in Sources */,
+				EC320E1323A2D81700AA10B6 /* Post.swift in Sources */,
 				EC320E0623A1A5D900AA10B6 /* SignupVC.swift in Sources */,
 				ECBA8CBF238C36B90045782C /* SceneDelegate.swift in Sources */,
 				ECBA8CE8238C6DD90045782C /* AppUser.swift in Sources */,
