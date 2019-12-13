@@ -5,22 +5,19 @@
 //  Created by Alex 6.1 on 11/25/19.
 //  Copyright © 2019 aglegaspi. All rights reserved.
 //
-
 import Foundation
 import FirebaseFirestore
 
 fileprivate enum FireStoreCollections: String {
     case users
     case posts
-    case comments
 }
 
 enum SortingCriteria: String {
     case fromNewestToOldest = "dateCreated"
     var shouldSortDescending: Bool {
         switch self {
-        case .fromNewestToOldest:
-            return true
+        case .fromNewestToOldest: return true
         }
     }
 }
@@ -28,10 +25,8 @@ enum SortingCriteria: String {
 
 class FirestoreService {
     static let manager = FirestoreService()
-    
     private let db = Firestore.firestore()
     
-    //MARK: AppUsers
     func createAppUser(user: AppUser, completion: @escaping (Result<(), Error>) -> ()) {
         var fields = user.fieldsDict
         fields["dateCreated"] = Date()
@@ -46,26 +41,17 @@ class FirestoreService {
     
     func updateCurrentUser(userName: String? = nil, photoURL: URL? = nil, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
-            //MARK: TODO - handle can't get current user
             return
         }
         var updateFields = [String:Any]()
         
-        if let user = userName {
-            updateFields["userName"] = user
-        }
+        if let user = userName { updateFields["userName"] = user }
         
-        if let photo = photoURL {
-            updateFields["photoURL"] = photo.absoluteString
-        }
+        if let photo = photoURL { updateFields["photoURL"] = photo.absoluteString }
         
         db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(()))
-            }
-            
+            if let error = error { completion(.failure(error))
+            } else { completion(.success(())) }
         }
     }
     
