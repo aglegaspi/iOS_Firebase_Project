@@ -33,15 +33,6 @@ class UploadVC: UIViewController {
         return image
     }()
     
-    var uploadButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Upload", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = button.titleLabel?.font.withSize(34)
-        button.backgroundColor = .blue
-        return button
-    }()
-    
     lazy var addButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
@@ -49,6 +40,17 @@ class UploadVC: UIViewController {
         button.addTarget(self, action: #selector(addImage), for: .touchDown)
         return button
     }()
+    
+    var uploadButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Upload", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = button.titleLabel?.font.withSize(34)
+        button.backgroundColor = .blue
+        button.addTarget(self, action: #selector(uploadPost), for: .touchDown)
+        return button
+    }()
+    
    
 //MARK: LIFECYCLES
     override func viewDidLoad() {
@@ -113,6 +115,7 @@ class UploadVC: UIViewController {
     }
     
 //MARK: OBJC FUNCTIONS
+    // PICK AN IMAGE
     @objc func addImage() {
         switch PHPhotoLibrary.authorizationStatus() {
         case .notDetermined, .denied, .restricted:
@@ -127,8 +130,20 @@ class UploadVC: UIViewController {
         }
     }
     
+    //UPLOAD AN IMAGE
     @objc func uploadPost() {
-        
+        guard let user = FirebaseAuthService.manager.currentUser else {return}
+        guard let photoUrl = imageURL else {return}
+        FirestoreService.manager.createPost(post: Post(photoUrl: photoUrl.absoluteString, creatorID: user.uid)) { (result) in
+            switch result {
+            case .failure(let error):
+                self.present(ShowAlert.showAlert(with: "Could not make post", and: "Error: \(error)"), animated: true, completion: nil)
+            case .success:
+                self.present(ShowAlert.showAlert(with: "Success", and: "Post created"), animated: true, completion: nil)
+                self.uploadImageView.image = nil
+                self.view.layoutSubviews()
+            }
+        }
     }
 
 }
@@ -146,13 +161,13 @@ extension UploadVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             present(ShowAlert.showAlert(with: "Error", and: "Could not compress image"), animated: true, completion: nil)
             return
         }
-        
         FirebaseStorageService.manager.storeImage(image: imageData, completion: { [weak self] (result) in
             switch result{
             case .success(let url): return (self?.imageURL = url)!
             case .failure(let error): print(error)
             }
         })
+        
         dismiss(animated: true, completion: nil)
     }
 }

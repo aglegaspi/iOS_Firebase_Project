@@ -27,6 +27,7 @@ class FirestoreService {
     static let manager = FirestoreService()
     private let db = Firestore.firestore()
     
+    //USERS
     func createAppUser(user: AppUser, completion: @escaping (Result<(), Error>) -> ()) {
         var fields = user.fieldsDict
         fields["dateCreated"] = Date()
@@ -44,9 +45,7 @@ class FirestoreService {
             return
         }
         var updateFields = [String:Any]()
-        
         if let user = userName { updateFields["userName"] = user }
-        
         if let photo = photoURL { updateFields["photoURL"] = photo.absoluteString }
         
         db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
@@ -67,6 +66,16 @@ class FirestoreService {
                 })
                 completion(.success(users ?? []))
             }
+        }
+    }
+    
+    //POSTS
+    func createPost(post: Post, completion: @escaping (Result<(), Error>) -> ()) {
+        var fields = post.fieldsDict
+        fields["dateCreated"] = Date()
+        db.collection(FireStoreCollections.posts.rawValue).addDocument(data: fields) { (error) in
+            if let error = error { completion(.failure(error))
+            } else { completion(.success(())) }
         }
     }
     
