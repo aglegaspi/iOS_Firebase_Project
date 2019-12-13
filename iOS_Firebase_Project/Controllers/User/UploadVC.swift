@@ -6,9 +6,14 @@
 //  Copyright © 2019 aglegaspi. All rights reserved.
 //
 import UIKit
+import Photos
 
 class UploadVC: UIViewController {
 
+//MARK: PROPERTIES
+    var image = UIImage() { didSet { self.uploadImageView.image = image } }
+    var imageURL: URL? = nil
+    
 //MARK: VIEWS
     var uploadLabel: UILabel = {
         let label = UILabel()
@@ -34,15 +39,14 @@ class UploadVC: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = button.titleLabel?.font.withSize(34)
         button.backgroundColor = .blue
-        button.showsTouchWhenHighlighted = true
         return button
     }()
     
     lazy var addButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
-        //button.backgroundColor = .yellow
-        button.showsTouchWhenHighlighted = true
+        button.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        button.addTarget(self, action: #selector(addImage), for: .touchDown)
         return button
     }()
    
@@ -95,5 +99,61 @@ class UploadVC: UIViewController {
             addButton.heightAnchor.constraint(equalToConstant: 45),
             addButton.widthAnchor.constraint(equalToConstant: 40)])
     }
+    
+//MARK: PRIVATE FUNCTIONS
+    private func photoPicker() {
+        DispatchQueue.main.async{
+            let imagePickerViewController = UIImagePickerController()
+            imagePickerViewController.delegate = self
+            imagePickerViewController.sourceType = .photoLibrary
+            imagePickerViewController.allowsEditing = true
+            imagePickerViewController.mediaTypes = ["public.image", "public.movie"]
+            self.present(imagePickerViewController, animated: true, completion: nil)
+        }
+    }
+    
+//MARK: OBJC FUNCTIONS
+    @objc func addImage() {
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .notDetermined, .denied, .restricted:
+            PHPhotoLibrary.requestAuthorization({[weak self] status in
+                switch status {
+                case .authorized: self?.photoPicker()
+                case .denied: print("Denied photo library permissions")
+                default: print("No usable status")
+                }
+            })
+        default: photoPicker()
+        }
+    }
+    
+    @objc func uploadPost() {
+        
+    }
 
 }
+
+extension UploadVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            present(ShowAlert.showAlert(with: "Error", and: "Couldn't get image"), animated: true, completion: nil)
+            return
+        }
+        self.image = image
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.4) else {
+            present(ShowAlert.showAlert(with: "Error", and: "Could not compress image"), animated: true, completion: nil)
+            return
+        }
+        
+        FirebaseStorageService.manager.storeImage(image: imageData, completion: { [weak self] (result) in
+            switch result{
+            case .success(let url): return (self?.imageURL = url)!
+            case .failure(let error): print(error)
+            }
+        })
+        dismiss(animated: true, completion: nil)
+    }
+}
+

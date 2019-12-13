@@ -5,25 +5,23 @@
 //  Created by Alex 6.1 on 12/12/19.
 //  Copyright © 2019 aglegaspi. All rights reserved.
 //
-
 import UIKit
 
 class FeedVC: UIViewController {
 
 //MARK: PROPERTIES
-    var posts = [Post]() {
-        didSet { collectionView.reloadData() }
-    }
+    var posts = [Post]() { didSet { collectionView.reloadData() } }
     
 //MARK: VIEWS
     var projectLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tha Feed"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.text = "The Feed"
+        label.font = UIFont.systemFont(ofSize: 40, weight: .regular)
         label.textAlignment = .center
         label.textColor = .black
         return label
     }()
+    
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -58,6 +56,7 @@ class FeedVC: UIViewController {
             projectLabel.heightAnchor.constraint(equalToConstant: 50),
             projectLabel.widthAnchor.constraint(equalTo: view.widthAnchor)])
     }
+    
     private func constrainCollectionView() {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,9 +66,12 @@ class FeedVC: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
+
+//MARK: PRIVATE FUNCTIONS
     
 }
 
+//MARK: EXTENSION
 extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
