@@ -115,7 +115,7 @@ class UploadVC: UIViewController {
     }
     
 //MARK: OBJC FUNCTIONS
-    // PICK AN IMAGE
+    //PICK AN IMAGE
     @objc func addImage() {
         switch PHPhotoLibrary.authorizationStatus() {
         case .notDetermined, .denied, .restricted:
@@ -140,7 +140,7 @@ class UploadVC: UIViewController {
                 self.present(ShowAlert.showAlert(with: "Could not make post", and: "Error: \(error)"), animated: true, completion: nil)
             case .success:
                 self.present(ShowAlert.showAlert(with: "Success", and: "Post created"), animated: true, completion: nil)
-                self.uploadImageView.image = nil
+                self.uploadImageView.image = UIImage(named: "uploadImage")
                 self.view.layoutSubviews()
             }
         }

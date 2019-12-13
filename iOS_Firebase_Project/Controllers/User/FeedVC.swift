@@ -38,7 +38,8 @@ class FeedVC: UIViewController {
         setUpConstraints()
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.posts = [Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date()), Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date()), Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date())]
+        loadPosts()
+        //self.posts = [Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date()), Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date()), Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date())]
     }
     
 //MARK: CONSTRAINTS
@@ -68,7 +69,16 @@ class FeedVC: UIViewController {
     }
 
 //MARK: PRIVATE FUNCTIONS
-    
+    private func loadPosts() {
+        FirestoreService.manager.getAllPosts(sortingCriteria: nil) { (result) in
+            switch result {
+            case .failure(let error):
+                self.present(ShowAlert.showAlert(with: "Error", and: "Could not load posts: \(error)"), animated: true, completion: nil)
+            case .success(let postsFromFirebase):
+                self.posts = postsFromFirebase
+            }
+        }
+    }
 }
 
 //MARK: EXTENSION
@@ -81,6 +91,15 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         let post = posts[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedCell", for: indexPath) as? FeedCell else { return UICollectionViewCell() }
         cell.nameLabel.text = post.creatorID
+        ImageHelper.shared.getImage(urlStr: post.photoUrl ?? "") { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error): print(error)
+                case .success(let image): cell.postImage.image = image
+                }
+            }
+            
+        }
         return cell
     }
     

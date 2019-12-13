@@ -24,7 +24,8 @@ struct Post {
     
        init?(from dict: [String: Any], id: String) {
            guard let userID = dict["creatorID"] as? String,
-               let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue(),
+                let id = dict["id"] as? String,
+                let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue(),
                 let photoUrl = dict["photoUrl"] as? String else { return nil }
            
            self.creatorID = userID
@@ -35,7 +36,8 @@ struct Post {
        
        var fieldsDict: [String: Any] {
            return [
-               "photoUrl": self.photoUrl,
+               "photoUrl": self.photoUrl ?? "",
+               "id": self.id,
                "creatorID": self.creatorID
            ]
        }
