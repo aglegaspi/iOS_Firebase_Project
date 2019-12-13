@@ -182,25 +182,15 @@ class LoginVC: UIViewController {
         case .failure(let error):
             showAlert(with: "Error", and: "Could not log in. Error: \(error)")
         case .success:
-            
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                 let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
-                else {
-                    //MARK: TODO - handle could not swap root view controller
-                    return
-            }
+                else { return }
             
-            //MARK: TODO - refactor this logic into scene delegate
             UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
-                if FirebaseAuthService.manager.currentUser?.photoURL != nil {
-                    window.rootViewController = ProfileVC()
-                } else {
                     window.rootViewController = {
-                        let mainVC = FeedVC()
-                        //profileSetupVC.settingFromLogin = true
-                        return mainVC
+                        let mainTBC = MainTBC()
+                        return mainTBC
                     }()
-                }
             }, completion: nil)
         }
     }
