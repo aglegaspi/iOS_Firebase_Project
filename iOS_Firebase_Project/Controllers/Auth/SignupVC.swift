@@ -189,23 +189,14 @@ class SignupVC: UIViewController {
             case .success:
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                     let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
-                    else {
-                        //MARK: TODO - handle could not swap root view controller
-                        return
-                }
-                
-                //MARK: TODO - refactor this logic into scene delegate
+                    else { return }
                 UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
-                    if FirebaseAuthService.manager.currentUser?.photoURL != nil {
-                        window.rootViewController = ProfileVC()
-                    } else {
                         window.rootViewController = {
-                            let mainVC = FeedVC()
-                            //profileSetupVC.settingFromLogin = true
-                            return mainVC
+                            let mainTBC = MainTBC()
+                            return mainTBC
                         }()
-                    }
                 }, completion: nil)
+                
             case .failure(let error):
                 self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
             }

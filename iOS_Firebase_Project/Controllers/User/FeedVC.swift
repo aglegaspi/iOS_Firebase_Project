@@ -42,6 +42,11 @@ class FeedVC: UIViewController {
         //self.posts = [Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date()), Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date()), Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date())]
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadPosts()
+    }
+    
 //MARK: CONSTRAINTS
     private func setUpConstraints() {
         constrainLabel()
