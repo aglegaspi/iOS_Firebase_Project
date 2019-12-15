@@ -65,7 +65,7 @@ class PhotoDetailVC: UIViewController {
     //MARK: LIFECYCLES
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .clear
+        view.backgroundColor = .black
         setupConstraints()
         setDateLabel()
     }

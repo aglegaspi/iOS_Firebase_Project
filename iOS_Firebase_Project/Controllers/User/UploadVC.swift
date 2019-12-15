@@ -9,12 +9,12 @@ import UIKit
 import Photos
 
 class UploadVC: UIViewController {
-
-//MARK: PROPERTIES
+    
+    //MARK: PROPERTIES
     var image = UIImage() { didSet { self.uploadImageView.image = image } }
     var imageURL: URL? = nil
     
-//MARK: VIEWS
+    //MARK: VIEWS
     var uploadLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -35,9 +35,6 @@ class UploadVC: UIViewController {
     
     lazy var addButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Select Image To Upload", for: .normal)
-        button.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
-        button.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.5)
         button.addTarget(self, action: #selector(addImage), for: .touchDown)
         return button
     }()
@@ -47,19 +44,20 @@ class UploadVC: UIViewController {
         button.setTitle("Post New Image", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.titleLabel?.font = button.titleLabel?.font.withSize(34)
+        button.isHighlighted = true
         button.addTarget(self, action: #selector(uploadPost), for: .touchDown)
         return button
     }()
     
-   
-//MARK: LIFECYCLES
+    
+    //MARK: LIFECYCLES
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 1.0, green: 0.755, blue: 1.0, alpha: 1.0)
         setUpConstraints()
     }
-   
-//MARK: CONSTRAINTS
+    
+    //MARK: CONSTRAINTS
     private func setUpConstraints() {
         setUploadLabelConstraints()
         setUploadImageConstraints()
@@ -86,6 +84,16 @@ class UploadVC: UIViewController {
             uploadImageView.heightAnchor.constraint(equalToConstant: 300)])
     }
     
+    private func setAddButtonConstraints() {
+        view.addSubview(addButton)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 100),
+            addButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            addButton.widthAnchor.constraint(equalToConstant: 300),
+            addButton.heightAnchor.constraint(equalToConstant: 300)])
+    }
+    
     private func setUploadButtonConstraints() {
         view.addSubview(uploadButton)
         uploadButton.translatesAutoresizingMaskIntoConstraints = false
@@ -96,17 +104,9 @@ class UploadVC: UIViewController {
             uploadButton.heightAnchor.constraint(equalToConstant: 70)])
     }
     
-    private func setAddButtonConstraints() {
-        view.addSubview(addButton)
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            addButton.bottomAnchor.constraint(equalTo: uploadImageView.topAnchor, constant: 10),
-            addButton.trailingAnchor.constraint(equalTo: uploadImageView.trailingAnchor, constant: 20),
-            addButton.heightAnchor.constraint(equalToConstant: 45),
-            addButton.widthAnchor.constraint(equalToConstant: 40)])
-    }
     
-//MARK: PRIVATE FUNCTIONS
+    
+    //MARK: PRIVATE FUNCTIONS
     private func photoPicker() {
         DispatchQueue.main.async{
             let imagePickerViewController = UIImagePickerController()
@@ -118,7 +118,7 @@ class UploadVC: UIViewController {
         }
     }
     
-//MARK: OBJC FUNCTIONS
+    //MARK: OBJC FUNCTIONS
     //PICK AN IMAGE
     @objc func addImage() {
         switch PHPhotoLibrary.authorizationStatus() {
@@ -136,20 +136,23 @@ class UploadVC: UIViewController {
     
     //UPLOAD AN IMAGE
     @objc func uploadPost() {
+        
         guard let user = FirebaseAuthService.manager.currentUser else {return}
         guard let photoUrl = imageURL else {return}
         FirestoreService.manager.createPost(post: Post(photoUrl: photoUrl.absoluteString, creatorID: user.uid)) { (result) in
+            self.uploadButton.isEnabled = false
             switch result {
             case .failure(let error):
                 self.present(ShowAlert.showAlert(with: "Could not make post", and: "Error: \(error)"), animated: true, completion: nil)
             case .success:
                 self.present(ShowAlert.showAlert(with: "Success", and: "Post created"), animated: true, completion: nil)
                 self.uploadImageView.image = UIImage(named: "uploadImage")
+                self.uploadButton.isEnabled = true
                 self.view.layoutSubviews()
             }
         }
     }
-
+    
 }
 
 extension UploadVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
