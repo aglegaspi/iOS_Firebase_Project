@@ -66,6 +66,7 @@ class UploadVC: UIViewController {
         setUploadButtonConstraints()
         setAddButtonConstraints()
     }
+    
     private func setUploadLabelConstraints() {
         view.addSubview(uploadLabel)
         uploadLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +75,7 @@ class UploadVC: UIViewController {
             uploadLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             uploadLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)])
     }
+    
     private func setUploadImageConstraints() {
         view.addSubview(uploadImageView)
         uploadImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,6 +85,7 @@ class UploadVC: UIViewController {
             uploadImageView.widthAnchor.constraint(equalToConstant: 300),
             uploadImageView.heightAnchor.constraint(equalToConstant: 300)])
     }
+    
     private func setUploadButtonConstraints() {
         view.addSubview(uploadButton)
         uploadButton.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +95,7 @@ class UploadVC: UIViewController {
             uploadButton.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor, constant: 1.5),
             uploadButton.heightAnchor.constraint(equalToConstant: 70)])
     }
+    
     private func setAddButtonConstraints() {
         view.addSubview(addButton)
         addButton.translatesAutoresizingMaskIntoConstraints = false
@@ -161,7 +165,7 @@ extension UploadVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             present(ShowAlert.showAlert(with: "Error", and: "Could not compress image"), animated: true, completion: nil)
             return
         }
-        FirebaseStorageService.manager.storeImage(image: imageData, completion: { [weak self] (result) in
+        FirebaseStorageService.uploadManager.storeImage(image: imageData, completion: { [weak self] (result) in
             switch result{
             case .success(let url): return (self?.imageURL = url)!
             case .failure(let error): print(error)

@@ -21,6 +21,7 @@
 		EC320E1C23A4080500AA10B6 /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E1B23A4080500AA10B6 /* ShowAlert.swift */; };
 		EC320E1E23A42D5800AA10B6 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E1D23A42D5800AA10B6 /* ImageHelper.swift */; };
 		EC320E2023A42DA400AA10B6 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E1F23A42DA400AA10B6 /* AppError.swift */; };
+		EC320E2223A6D8C100AA10B6 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC320E2123A6D8C000AA10B6 /* EditProfileVC.swift */; };
 		ECBA8CBD238C36B90045782C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA8CBC238C36B90045782C /* AppDelegate.swift */; };
 		ECBA8CBF238C36B90045782C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBA8CBE238C36B90045782C /* SceneDelegate.swift */; };
 		ECBA8CC6238C36C10045782C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECBA8CC5238C36C10045782C /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		EC320E1B23A4080500AA10B6 /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
 		EC320E1D23A42D5800AA10B6 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		EC320E1F23A42DA400AA10B6 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		EC320E2123A6D8C000AA10B6 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		ECBA8CB9238C36B90045782C /* iOS_Firebase_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Firebase_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECBA8CBC238C36B90045782C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECBA8CBE238C36B90045782C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				EC320E0A23A26EFD00AA10B6 /* MainTBC.swift */,
 				EC320E1023A26FBD00AA10B6 /* ProfileVC.swift */,
+				EC320E2123A6D8C000AA10B6 /* EditProfileVC.swift */,
 				EC320E0E23A26F6000AA10B6 /* UploadVC.swift */,
 				EC320E0C23A26F4B00AA10B6 /* FeedVC.swift */,
 				EC320E0823A1AC5B00AA10B6 /* FeedCell.swift */,
@@ -397,6 +400,7 @@
 				ECBA8CEA238C87050045782C /* FirebaseStorageService.swift in Sources */,
 				EC320E0923A1AC5B00AA10B6 /* FeedCell.swift in Sources */,
 				EC320E0D23A26F4B00AA10B6 /* FeedVC.swift in Sources */,
+				EC320E2223A6D8C100AA10B6 /* EditProfileVC.swift in Sources */,
 				ECBA8CE6238C6D9D0045782C /* FirestoreService.swift in Sources */,
 				ECBA8CBD238C36B90045782C /* AppDelegate.swift in Sources */,
 				EC320E1E23A42D5800AA10B6 /* ImageHelper.swift in Sources */,

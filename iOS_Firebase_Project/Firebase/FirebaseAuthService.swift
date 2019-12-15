@@ -28,23 +28,23 @@ class FirebaseAuthService {
         }
     }
     
-    //    func updateUserFields(userName: String? = nil,photoURL: URL? = nil, completion: @escaping (Result<(),Error>) -> ()) {
-    //        let changeRequest = auth.currentUser?.createProfileChangeRequest()
-    //
-    //        if let userName = userName {
-    //            changeRequest?.displayName = userName
-    //        }
-    //        if let photoURL = photoURL {
-    //            changeRequest?.photoURL = photoURL
-    //        }
-    //        changeRequest?.commitChanges(completion: { (error) in
-    //            if let error = error {
-    //                completion(.failure(error))
-    //            } else {
-    //                completion(.success(()))
-    //            }
-    //        })
-    //    }
+        func updateUserFields(userName: String? = nil,photoURL: URL? = nil, completion: @escaping (Result<(),Error>) -> ()) {
+            let changeRequest = auth.currentUser?.createProfileChangeRequest()
+    
+            if let userName = userName {
+                changeRequest?.displayName = userName
+            }
+            if let photoURL = photoURL {
+                changeRequest?.photoURL = photoURL
+            }
+            changeRequest?.commitChanges(completion: { (error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(()))
+                }
+            })
+        }
     
     func createProfileChangeRequest(photoUrl: URL? = nil, name: String? = nil, _ callback: ((Error?) -> ())? = nil){
         if let request = Auth.auth().currentUser?.createProfileChangeRequest(){
