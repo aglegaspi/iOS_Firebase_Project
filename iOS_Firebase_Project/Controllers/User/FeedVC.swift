@@ -8,11 +8,11 @@
 import UIKit
 
 class FeedVC: UIViewController {
-
-//MARK: PROPERTIES
+    
+    //MARK: PROPERTIES
     var posts = [Post]() { didSet { collectionView.reloadData() } }
     
-//MARK: VIEWS
+    //MARK: VIEWS
     var projectLabel: UILabel = {
         let label = UILabel()
         label.text = "The Feed"
@@ -31,7 +31,7 @@ class FeedVC: UIViewController {
         return collection
     }()
     
-//MARK: LIFECYCLES
+    //MARK: LIFECYCLES
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 1.000, green: 0.755, blue: 0.000, alpha: 1.0)
@@ -47,7 +47,7 @@ class FeedVC: UIViewController {
         loadPosts()
     }
     
-//MARK: CONSTRAINTS
+    //MARK: CONSTRAINTS
     private func setUpConstraints() {
         constrainLabel()
         constrainCollectionView()
@@ -72,8 +72,8 @@ class FeedVC: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
-
-//MARK: PRIVATE FUNCTIONS
+    
+    //MARK: PRIVATE FUNCTIONS
     private func loadPosts() {
         FirestoreService.manager.getAllPosts(sortingCriteria: nil) { (result) in
             switch result {
@@ -95,22 +95,29 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let post = posts[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedCell", for: indexPath) as? FeedCell else { return UICollectionViewCell() }
+        let imageURL = post.photoUrl ?? ""
         cell.nameLabel.text = post.creatorID
-        ImageHelper.shared.getImage(urlStr: post.photoUrl ?? "") { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error): print(error)
-                case .success(let image): cell.postImage.image = image
+        
+        if let image = ImageHelper.shared.image(forKey: imageURL as NSString) {
+            cell.postImage.image = image
+        } else {
+            ImageHelper.shared.getImage(urlStr: imageURL) { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .failure(let error): print(error)
+                    case .success(let image): cell.postImage.image = image
+                    }
                 }
             }
-            
         }
+        
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width - 10, height: 500)
-       }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
