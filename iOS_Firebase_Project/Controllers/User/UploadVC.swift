@@ -18,7 +18,7 @@ class UploadVC: UIViewController {
     var uploadLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Upload An Image"
+        label.text = "Create New Post"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label.textAlignment = .center
@@ -35,6 +35,7 @@ class UploadVC: UIViewController {
     
     lazy var addButton: UIButton = {
         let button = UIButton()
+        button.setTitle("Select Image To Upload", for: .normal)
         button.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
         button.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.5)
         button.addTarget(self, action: #selector(addImage), for: .touchDown)
@@ -43,10 +44,9 @@ class UploadVC: UIViewController {
     
     var uploadButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Upload", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitle("Post New Image", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
         button.titleLabel?.font = button.titleLabel?.font.withSize(34)
-        button.backgroundColor = .blue
         button.addTarget(self, action: #selector(uploadPost), for: .touchDown)
         return button
     }()

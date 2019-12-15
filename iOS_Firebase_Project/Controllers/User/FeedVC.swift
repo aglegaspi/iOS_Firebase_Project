@@ -39,7 +39,6 @@ class FeedVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         loadPosts()
-        //self.posts = [Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date()), Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date()), Post(photoUrl: "", creatorID: "Hello There", dateCreated: Date())]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +95,7 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         let post = posts[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedCell", for: indexPath) as? FeedCell else { return UICollectionViewCell() }
         let imageURL = post.photoUrl ?? ""
-        cell.nameLabel.text = post.creatorID
+        
         
         if let image = ImageHelper.shared.image(forKey: imageURL as NSString) {
             cell.postImage.image = image
@@ -120,11 +119,13 @@ extension FeedVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedPost = posts[indexPath.row]
         let detailVC = PhotoDetailVC()
+        detailVC.post = selectedPost
         present(detailVC, animated: true, completion: nil)
     }
     
