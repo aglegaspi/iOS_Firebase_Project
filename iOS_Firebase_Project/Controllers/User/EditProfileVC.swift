@@ -21,60 +21,55 @@ class EditProfileVC: UIViewController {
     
     //MARK: VIEWS
     lazy var imageView: UIImageView = {
-         let imageView = UIImageView()
-         imageView.backgroundColor = .init(white: 0.2, alpha: 0.9)
-         imageView.image = UIImage(systemName: "person")
-         imageView.tintColor = .white
-         return imageView
-     }()
-
-     lazy var addImageButton: UIButton = {
-         let button = UIButton()
-         button.setTitle("Add Image", for: .normal)
-         button.setTitleColor(.white, for: .normal)
-          button.titleLabel?.font = button.titleLabel?.font.withSize(34)
-         button.backgroundColor = .init(white: 0.2, alpha: 0.9)
-         button.addTarget(self, action: #selector(addImagePressed), for: .touchUpInside)
-         button.showsTouchWhenHighlighted = true
-         return button
-     }()
-
-     lazy var userNameTextField: UITextField = {
-         let textField = UITextField()
-         textField.placeholder = "Enter User Name"
-         textField.autocorrectionType = .no
-         textField.textAlignment = .left
-         textField.layer.cornerRadius = 15
-         textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
-         textField.textColor = .white
-         textField.borderStyle = .roundedRect
-         textField.delegate = self
-         return textField
-     }()
-
-     lazy var saveButton: UIButton = {
-         let button = UIButton()
-         button.setTitle("Save Profile", for: .normal)
-         button.setTitleColor(.white, for: .normal)
-         button.titleLabel?.font = UIFont(name: "System", size: 14)
-         button.backgroundColor = .init(white: 0.2, alpha: 0.9)
-         button.showsTouchWhenHighlighted = true
-         button.layer.cornerRadius = 5
-         button.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
-         return button
-     }()
-     
-     lazy var cancelButton: UIButton = {
-         let button = UIButton()
-         button.setTitle("Cancel", for: .normal)
-         button.setTitleColor(.white, for: .normal)
-         button.titleLabel?.font = UIFont(name: "System", size: 14)
-         button.backgroundColor = .init(white: 0.2, alpha: 0.9)
-         button.layer.cornerRadius = 5
-
-         button.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
-         return button
-     }()
+        let imageView = UIImageView()
+        imageView.backgroundColor = .init(white: 0.2, alpha: 0.9)
+        imageView.image = UIImage(systemName: "person")
+        imageView.tintColor = .white
+        return imageView
+    }()
+    
+    lazy var addImageButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Add Profile Image", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = button.titleLabel?.font.withSize(34)
+        button.addTarget(self, action: #selector(addImagePressed), for: .touchUpInside)
+        button.showsTouchWhenHighlighted = true
+        return button
+    }()
+    
+    lazy var userNameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter User Name"
+        textField.autocorrectionType = .no
+        textField.textAlignment = .left
+        textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
+        textField.textColor = .black
+        textField.font?.withSize(30)
+        textField.borderStyle = .roundedRect
+        textField.delegate = self
+        return textField
+    }()
+    
+    lazy var saveButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Save Profile", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: "System", size: 14)
+        button.showsTouchWhenHighlighted = true
+        button.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: "System", size: 14)
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
+        return button
+    }()
     
     
     //MARK: LIFECYCLES
@@ -93,73 +88,73 @@ class EditProfileVC: UIViewController {
     
     
     //MARK: CONSTRAINTS
-       private func setupConstraints() {
-           setupImageView()
-           setupUserNameTextField()
-           setupAddImageButton()
-           setupSaveButton()
-           setupCancelButton()
-       }
-
-       private func setupImageView() {
-           view.addSubview(imageView)
-
-           imageView.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-               imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
-               imageView.heightAnchor.constraint(equalToConstant: 200),
-               imageView.widthAnchor.constraint(equalToConstant: 200)
-           ])
-       }
-
-       private func setupUserNameTextField() {
-           view.addSubview(userNameTextField)
-
-           userNameTextField.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               userNameTextField.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
-               userNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-               userNameTextField.heightAnchor.constraint(equalToConstant: 30),
-               userNameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width / 2)
-           ])
-       }
-
-       private func setupAddImageButton() {
-           view.addSubview(addImageButton)
-
-           addImageButton.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               addImageButton.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 50),
-               addImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-               addImageButton.heightAnchor.constraint(equalToConstant: 50),
-               addImageButton.widthAnchor.constraint(equalTo: view.widthAnchor)
-           ])
-       }
-
-       private func setupSaveButton() {
-           view.addSubview(saveButton)
-
-           saveButton.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               saveButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-               saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-               saveButton.heightAnchor.constraint(equalToConstant: 30),
-               saveButton.widthAnchor.constraint(equalToConstant: view.bounds.width / 3)
-           ])
-       }
-       
-       private func setupCancelButton() {
-           view.addSubview(cancelButton)
-
-           cancelButton.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-               cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-               cancelButton.heightAnchor.constraint(equalToConstant: 30),
-               cancelButton.widthAnchor.constraint(equalToConstant: view.bounds.width / 3)
-           ])
-       }
+    private func setupConstraints() {
+        setupImageView()
+        setupUserNameTextField()
+        setupAddImageButton()
+        setupSaveButton()
+        setupCancelButton()
+    }
+    
+    private func setupImageView() {
+        view.addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
+            imageView.widthAnchor.constraint(equalToConstant: 200)
+        ])
+    }
+    
+    private func setupUserNameTextField() {
+        view.addSubview(userNameTextField)
+        
+        userNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            userNameTextField.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
+            userNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            userNameTextField.heightAnchor.constraint(equalToConstant: 30),
+            userNameTextField.widthAnchor.constraint(equalToConstant: view.bounds.width / 2)
+        ])
+    }
+    
+    private func setupAddImageButton() {
+        view.addSubview(addImageButton)
+        
+        addImageButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addImageButton.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 50),
+            addImageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addImageButton.heightAnchor.constraint(equalToConstant: 50),
+            addImageButton.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+    }
+    
+    private func setupSaveButton() {
+        view.addSubview(saveButton)
+        
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            saveButton.heightAnchor.constraint(equalToConstant: 30),
+            saveButton.widthAnchor.constraint(equalToConstant: view.bounds.width / 3)
+        ])
+    }
+    
+    private func setupCancelButton() {
+        view.addSubview(cancelButton)
+        
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            cancelButton.heightAnchor.constraint(equalToConstant: 30),
+            cancelButton.widthAnchor.constraint(equalToConstant: view.bounds.width / 3)
+        ])
+    }
     
     
     //MARK: PRIVATE FUNCTIONS
@@ -179,7 +174,7 @@ class EditProfileVC: UIViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
-
+    
     private func presentPhotoPickerController() {
         DispatchQueue.main.async{
             let imagePickerViewController = UIImagePickerController()
@@ -190,7 +185,7 @@ class EditProfileVC: UIViewController {
             self.present(imagePickerViewController, animated: true, completion: nil)
         }
     }
-
+    
     private func handleNavigationAwayFromVC() {
         if settingFromLogin {
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -212,7 +207,7 @@ class EditProfileVC: UIViewController {
             showAlert(with: "Failure", and: "Profile Not Updated")
             return
         }
-    
+        
         FirebaseAuthService.manager.updateUserFields(userName: userName, photoURL: imageURL) { (result) in
             switch result {
             case .success():
@@ -230,7 +225,7 @@ class EditProfileVC: UIViewController {
     @objc private func cancelButtonPressed(){
         dismiss(animated: true, completion: nil)
     }
-
+    
     @objc private func addImagePressed() {
         switch PHPhotoLibrary.authorizationStatus() {
         case .notDetermined, .denied, .restricted:
@@ -244,8 +239,8 @@ class EditProfileVC: UIViewController {
         default: photoPicker()
         }
     }
-
-
+    
+    
 }
 
 //MARK: EXTENSIONS
